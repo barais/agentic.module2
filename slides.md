@@ -228,7 +228,7 @@ Comment un modèle probabiliste pilote-t-il du code déterministe ?
 ```
 
 ---
-layout: two-cols
+layout: two-cols-header
 ---
 
 # 7. Workflow vs Agent Autonome
@@ -382,10 +382,10 @@ layout: default
 <div class="p-5 bg-indigo-50 dark:bg-indigo-950 border border-indigo-500 rounded-xl space-y-3">
   <div class="font-bold text-indigo-600 text-lg">À retenir impérativement :</div>
   <ul class="text-sm space-y-2">
-    <li>🔹 <b>Pas de magie :</b> Un agent = une boucle de contrôle + un LLM pour choisir l'action + du code déterministe pour exécuter l'action.</li>
-    <li>🔹 <b>Le Function Calling</b> est le pont standard qui transforme du texte non structuré en instructions machines typées.</li>
-    <li>🔹 <b>Privilégier les Workflows :</b> La plupart des cas d'usage industriels nécessitent des étapes prévisibles, pas des agents 100% autonomes.</li>
-    <li>🔹 <b>L'ingénierie reprend ses droits :</b> Observabilité, gestion d'erreurs, idempotence des outils et validation humaine sont indispensables.</li>
+    <li><b>Pas de magie :</b> Un agent = une boucle de contrôle + un LLM pour choisir l'action + du code déterministe pour exécuter l'action.</li>
+    <li><b>Le Function Calling</b> est le pont standard qui transforme du texte non structuré en instructions machines typées.</li>
+    <li><b>Privilégier les Workflows :</b> La plupart des cas d'usage industriels nécessitent des étapes prévisibles, pas des agents 100% autonomes.</li>
+    <li><b>L'ingénierie reprend ses droits :</b> Observabilité, gestion d'erreurs, idempotence des outils et validation humaine sont indispensables.</li>
   </ul>
 </div>
 
