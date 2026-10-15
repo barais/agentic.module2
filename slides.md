@@ -69,7 +69,7 @@ layout: default
 </div>
 
 ---
-layout: two-cols
+layout: two-cols-header
 ---
 
 # 2. Du Chatbot à l'Agent
