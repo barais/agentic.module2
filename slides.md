@@ -105,11 +105,12 @@ layout: default
 
 # 3. Définition formelle d'un agent
 
-<div class="p-4 bg-indigo-50 dark:bg-indigo-950 border-l-4 border-indigo-500 rounded my-4">
-  <p class="text-base italic">
-    « Un système logiciel qui interagit avec un LLM et qui appelle des outils dans une boucle itérative afin d'accomplir un objectif donné. »
-  </p>
+<div class="p-4 bg-indigo-50 dark:bg-indigo-950 border-l-4 border-indigo-500 rounded my-4 space-y-2">
+  <p class="text-base"><b>Essence :</b> un agent est un système qui prend des décisions de <b>façon autonome</b> dans une boucle <i>percevoir → raisonner → agir → observer</i>, afin d'atteindre un but donné.</p>
+  <p class="text-sm text-gray-600 dark:text-gray-400">Implémentation de référence dans ce cours : le moteur de décision est un <b>LLM</b> (traducteur d'intention), les bras sont des <b>outils déterministes</b> (API, SQL, scripts).</p>
+  <p class="text-xs text-gray-500">ℹ️ La définition classique de la recherche est plus large (Russell & Norvig : tout système percevant un environnement et agissant dessus, avec ou sans LLM). Nous restreignons ici au cas « agent LLM ».</p>
 </div>
+
 
 <div class="grid grid-cols-4 gap-4 mt-6 text-xs">
   <div class="p-3 border rounded bg-gray-50 dark:bg-gray-800">
@@ -124,11 +125,10 @@ layout: default
     <div class="font-bold text-indigo-500 text-sm mb-1">🛠️ 3. Outils (Tools)</div>
     Fonctions informatiques standard avec schémas typés (Bash, SQL, API HTTP, calculatrice).
   </div>
-  <div class="p-3 border rounded bg-gray-50 dark:bg-gray-800">
+ <div class="p-3 border rounded bg-gray-50 dark:bg-gray-800">
     <div class="font-bold text-indigo-500 text-sm mb-1">📝 4. Mémoire & Contexte</div>
-    Historique des actions passées, résultats d'outils et état interne de l'environnement.
-  </div>
-</div>
+    Contexte à court terme (étape courante) et mémoire long terme : résumés d'historique, RAG pour les connaissances externes, état de l'environnement.
+  </div></div>
 
 <div class="mt-6 text-center text-xs font-mono text-gray-400">
   Pattern ReAct standard : Pensée (Thought) ➔ Action ➔ Observation ➔ Décision suivante
@@ -142,32 +142,44 @@ layout: default
 
 Les concepts théoriques ont plus de 40 ans ; seule la brique centrale a changé.
 
-<div class="grid grid-cols-3 gap-4 mt-6">
+<div class="grid grid-cols-4 gap-4 mt-6">
   <div class="p-4 border rounded bg-gray-50 dark:bg-gray-800">
-    <div class="text-indigo-500 font-bold">1980 - 2000</div>
-    <div class="font-semibold text-sm">IA Symbolique & BDI</div>
+    <div class="text-indigo-500 font-bold">1960 - 1985</div>
+    <div class="font-semibold text-sm">IA Symbolique & Systèmes Experts</div>
     <p class="text-xs text-gray-500 mt-2">
-      Modèles <i>Belief-Desire-Intention</i>, systèmes experts et automates finis. 
+      Règles de production et moteurs d'inférence (Mycin, PROLOG, XCON).
       <br/><br/>
-      <b>Problème :</b> Trop rigides. La moindre ambiguïté du monde réel faisait planter le système.
+      <b>Problème :</b> <i>Brittleness</i> — toute entrée hors de la base de règles fait échouer le système ; acquisition de connaissance très coûteuse.
     </p>
   </div>
 
   <div class="p-4 border rounded bg-gray-50 dark:bg-gray-800">
-    <div class="text-indigo-500 font-bold">2010 - 2020</div>
+    <div class="text-indigo-500 font-bold">1987 - 2000</div>
+    <div class="font-semibold text-sm">Modèles BDI & Agents cognitifs</div>
+    <p class="text-xs text-gray-500 mt-2">
+      Croyances-Désirs-Intentions (Bratman, 1987 ; formalisé Rao & Georgeff, 1991-95) — raisonnement délibératif autonome.
+      <br/><br/>
+      <b>Problème :</b> Modèles câblés à la main : aucune tolérance au langage naturel ni aux entrées non structurées.
+    </p>
+  </div>
+
+  <div class="p-4 border rounded bg-gray-50 dark:bg-gray-800">
+    <div class="text-indigo-500 font-bold">1990 - 2010</div>
     <div class="font-semibold text-sm">Systèmes Multi-Agents (SMA)</div>
     <p class="text-xs text-gray-500 mt-2">
-      Coordination par protocoles de communication stricts (FIPA-ACL), simulation distribuée.
+      KQML (1993), <b>FIPA fondée en 1996</b>, protocole FIPA-ACL (fin des années 90), framework JADE (2001).
       <br/><br/>
-      <b>Problème :</b> Absence de compréhension sémantique fine des messages non formatés.
+      <b>Problème :</b> Protocoles de coordination stricts, mais <b>pas de compréhension sémantique fine</b> des messages non formatés.
     </p>
   </div>
 
   <div class="p-4 border-2 border-indigo-500 rounded bg-indigo-50 dark:bg-indigo-950">
-    <div class="text-indigo-600 font-bold">Aujourd'hui</div>
-    <div class="font-semibold text-sm">Systèmes Agentiques LLM</div>
+    <div class="text-indigo-600 font-bold">2017 - Aujourd'hui</div>
+    <div class="font-semibold text-sm">Deep Learning → Agentique LLM</div>
     <p class="text-xs text-gray-600 dark:text-gray-300 mt-2">
-      Le LLM remplace les moteurs d'inférence symboliques fragiles par un <b>traducteur sémantique tolérant au bruit</b> capable de comprendre le langage humain et d'écrire des appels d'API.
+      Transformers (2017), GPT-2/GPT-3 (2019-2020), Function Calling (2023), MCP (2024).
+      <br/><br/>
+      Le LLM remplace les moteurs d'inférence fragiles par un <b>traducteur sémantique tolérant au bruit</b> : il comprend le langage humain et écrit des appels d'API.
     </p>
   </div>
 </div>
@@ -184,19 +196,19 @@ Quatre briques techniques récentes ont permis le décollage des architectures a
 <div>
 
 ### 1. Robustesse des LLMs (GPT-4+)
-Les modèles ne perdent plus le fil après 3 échanges et savent respecter scrupuleusement des contraintes négatives.
+Fenêtres de contexte massivement étendues et instruction-following fiable : les modèles tiennent un objectif sur de longues boucles et respectent les contraintes négatives (⚠️ dérive possible sur contextes très longs).
 
 ### 2. Le « Function Calling » natif
 Les modèles sont entraînés spécifiquement pour produire du **JSON valide** correspondant à la signature d'une fonction logicielle.
-
 </div>
 <div>
 
 ### 3. Les frameworks d'orchestration
 Émergence de briques prêtes à l'emploi (LangGraph, CrewAI, AutoGen) pour gérer les graphes d'états et les mémoires.
 
-### 4. Le standard MCP (Model Context Protocol)
-Initié par Anthropic : un protocole standardisé pour brancher n'importe quel LLM à n'importe quel serveur d'outils local ou cloud (le « port USB-C » de l'IA).
+### 4. La standardisation des outils : MCP
+Initié par Anthropic (2024) : un protocole <b>client-serveur</b> pour brancher n'importe quel LLM à n'importe quel serveur d'outils local ou cloud (le « port USB-C » de l'IA).<br/>
+Complémentaire : <b>A2A</b> (protocole agent↔agent, 2025) pour le dialogue entre agents.
 
 </div>
 </div>
@@ -226,6 +238,10 @@ Comment un modèle probabiliste pilote-t-il du code déterministe ?
 5. Le LLM lit le résultat d'observation et formule la réponse finale à l'humain :
    "Oui, il fait actuellement beau à Rennes avec 18°C."
 ```
+
+<div class="mt-4 p-4 rounded-lg bg-amber-50 dark:bg-amber-950 border border-amber-400 text-xs">
+  Le JSON généré n'est <b>pas garanti valide à 100 %</b> → utiliser le <i>structured output</i> / <i>constrained decoding</i> ou valider le parse avant exécution ; régler <code>temperature = 0</code> pour des appels d'outils déterministes ; les modèles récents supportent les <b>appels d'outils parallèles</b> (plusieurs fonctions dans un même tour).
+</div>
 
 ---
 layout: two-cols-header
@@ -286,7 +302,7 @@ De l'agent simple aux collectifs spécialisés :
 Un seul LLM équipé d'une boîte à outils (Calculatrice, Recherche web, SQL). Il fait tout lui-même étape par étape.
 
 **Forces :** Simple à concevoir, faible latence.  
-**Limites :** Perd le fil si la boîte à outils dépasse 15-20 fonctions.
+**Limites :** la précision de sélection de l'outil se dégrade quand la boîte à outils grandit (au-delà d'une quinzaine de fonctions, selon le modèle) — pensez à introduire des routeurs ou des sous-graphes.
 
 </div>
 <div class="p-4 border-2 border-indigo-500 rounded bg-indigo-50 dark:bg-indigo-950">
@@ -372,6 +388,39 @@ Donner la capacité d'agir à une boîte noire probabiliste pose de nouveaux dé
 
 </div>
 </div>
+---
+layout: default
+---
+
+# 11. L'ingénierie agentique : évaluer, tracer, outiller
+
+Un agent se débogue, se teste et s'observe comme un système distribué — pas comme un prompt.
+
+<div class="grid grid-cols-2 gap-6 mt-4 text-xs">
+<div>
+
+### 🧪 Évaluer l'agent (pas juste le LLM)
+- Tester la **boucle entière** : golden tasks avec trajectoires de référence — vérifier *quelles* étapes l'agent emprunte, pas seulement le résultat final.
+- Métriques : taux de réussite du but, nombre d'appels superflus, coût en tokens, temps de complétion.
+- Tests unitaires sur les **outils** + tests d'intégration sur l'orchestration (boucles, erreurs, retries).
+
+### 🔭 Observer & déboguer
+- Traçabilité de bout en bout (LangSmith, Langfuse) : « pourquoi l'agent a-t-il appelé ce tool ? », rejouer les trajectoires.
+- Journaliser chaque décision (pensée, outil, arguments, observation) comme un log applicatif classique.
+</div>
+<div>
+
+### 🛠️ Concevoir les outils (le vrai métier)
+- **Schémas JSON soignés** : types précis, descriptions orientées « quand/comment l'utiliser ».
+- **Idempotence** : relancer deux fois la même action = même résultat (clé d'idempotence, upsert).
+- **Messages d'erreur diagnostiques** : l'outil renvoie une erreur exploitable par le LLM pour corriger sa trajectoire.
+- **Versionner** les prompts et les schémas d'outils comme du code.
+
+### 🧘 Sobriété des frameworks
+Une boucle `while + function calling` en ~50 lignes suffit souvent : ne passez sur LangGraph/CrewAI que si le graphe d'états ou la mémoire le justifient réellement.
+</div>
+</div>
+
 
 ---
 layout: default
