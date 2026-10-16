@@ -426,20 +426,20 @@ Une boucle `while + function calling` en ~50 lignes suffit souvent : ne passez s
 layout: default
 ---
 
-# 11. Synthèse du Module 2
+# 12. Synthèse du Module 2
 
 <div class="p-5 bg-indigo-50 dark:bg-indigo-950 border border-indigo-500 rounded-xl space-y-3">
   <div class="font-bold text-indigo-600 text-lg">À retenir impérativement :</div>
   <ul class="text-sm space-y-2">
-    <li><b>Pas de magie :</b> Un agent = une boucle de contrôle + un LLM pour choisir l'action + du code déterministe pour exécuter l'action.</li>
+    <li><b>Pas de magie :</b> Un agent = une boucle de contrôle + un LLM pour choisir l'action + du code déterministe pour exécuter l'action. C'est un <b>orchestrateur logiciel</b> — et l'agentique ne date pas d'hier : 40 ans de recherche, seule la brique centrale (le LLM) a changé.</li>
     <li><b>Le Function Calling</b> est le pont standard qui transforme du texte non structuré en instructions machines typées.</li>
-    <li><b>Privilégier les Workflows :</b> La plupart des cas d'usage industriels nécessitent des étapes prévisibles, pas des agents 100% autonomes.</li>
-    <li><b>L'ingénierie reprend ses droits :</b> Observabilité, gestion d'erreurs, idempotence des outils et validation humaine sont indispensables.</li>
+    <li><b>Question clé :</b> les étapes sont-elles connues à l'avance ? ➜ <b>Workflow déterminé</b>. Sinon, et seulement si le problème exige exploration et retours en arrière ➜ <b>Agent autonome</b>. L'agent reste un <b>dernier recours</b>, jamais un réflexe.</li>
+    <li><b>L'ingénierie reprend ses droits :</b> évaluer la boucle entière, observer et tracer les trajectoires, gérer les erreurs et l'idempotence des outils, poser des garde-fous (limites d'itérations, budget) et une validation humaine pour toute action irréversible.</li>
   </ul>
 </div>
 
 <div class="mt-6 text-center text-sm text-gray-500">
-  👉 <i>Prochaine étape : Atelier pratique — Concevoir son premier orchestrateur avec Function Calling.</i>
+  👉 <i>Prochaine étape : Anatomie d’un agent.</i>
 </div>
 
 ---
